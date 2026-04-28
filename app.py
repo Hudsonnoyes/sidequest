@@ -80,7 +80,7 @@ def load_quests():
     return get_quest_df()
 
 
-WEATHER_API_KEY = os.environ.get("OPENWEATHER_API_KEY", "")
+WEATHER_API_KEY = os.environ.get("OPENWEATHER_API_KEY", "") or st.secrets.get("api", {}).get("OPENWEATHER_API_KEY", "")
 
 
 # Cache weather for 10 minutes — weather doesn't change rapidly and the free
