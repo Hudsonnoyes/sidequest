@@ -235,12 +235,14 @@ if prompt:
             else:
                 msg = "Something went wrong. Please try again."
             st.error(msg)
+            st.exception(e)  # TEMP DEBUG: remove after diagnosing cloud error
             # Don't persist failed assistant turns to history — keeps the
             # conversation coherent on the next try.
             st.session_state.sidekick_messages.pop()
-        except Exception:
+        except Exception as e:
             # Network errors, timeouts, anything else
             st.error("Connection issue. Please try again.")
+            st.exception(e)  # TEMP DEBUG: remove after diagnosing cloud error
             st.session_state.sidekick_messages.pop()
 
 st.divider()
